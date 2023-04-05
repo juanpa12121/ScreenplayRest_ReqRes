@@ -16,8 +16,12 @@ public class ValidateGetFields implements Question<Boolean> {
 
     @Override
     public Boolean answeredBy(Actor actor) {
-        DataUserGet dataUserGetList = SerenityRest.lastResponse().jsonPath().getObject("data",DataUserGet.class);
-        return dataUserGetList.getEmail().equals(dataUser.getEmail());
+        DataUserGet dataUserObject = SerenityRest.lastResponse().jsonPath().getObject("data", DataUserGet.class);
+        return (dataUserObject.getId() == dataUser.getId())&&
+                dataUserObject.getEmail().equals(dataUser.getEmail())&&
+                (dataUserObject.getFirst_name().equals(dataUser.getFirst_name()))&&
+                (dataUserObject.getLast_name().equals(dataUser.getLast_name()))&&
+                (dataUserObject.getAvatar()).equals(dataUser.getAvatar());
     }
 
     public static ValidateGetFields validateResponseFields(DataUserGet dataUser){
