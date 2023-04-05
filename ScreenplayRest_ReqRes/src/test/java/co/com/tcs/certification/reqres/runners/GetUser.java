@@ -10,7 +10,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/resources/features/get_user.feature",
         glue = "co.com.tcs.certification.reqres.stepdefinitions",
-        snippets = SnippetType.CAMELCASE
+        snippets = SnippetType.CAMELCASE,
+        tags = "@Scenario2"
 )
 public class GetUser {
 }
