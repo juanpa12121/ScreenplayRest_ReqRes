@@ -1,16 +1,27 @@
 package co.com.tcs.certification.reqres.models;
 
 public class DataUserGet {
+
+    private int id;
     private String first_name;
     private String last_name;
     private String email;
     private String avatar;
 
-    public DataUserGet(String first_name, String last_name, String email, String avatar) {
+    public DataUserGet(int id, String first_name, String last_name, String email, String avatar) {
+        this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.avatar = avatar;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirst_name() {
@@ -48,7 +59,8 @@ public class DataUserGet {
     @Override
     public String toString() {
         return "DataUserGet{" +
-                "first_name='" + first_name + '\'' +
+                "id=" + id +
+                ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
                 ", email='" + email + '\'' +
                 ", avatar='" + avatar + '\'' +
