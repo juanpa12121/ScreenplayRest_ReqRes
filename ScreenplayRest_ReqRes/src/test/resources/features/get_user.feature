@@ -20,5 +20,3 @@ Feature: Get user on Reqres API
     Examples:
       | id | email                  | first_name | last_name | avatar                                   |
       | 10 | byron.fields@reqres.in | Byron      | Fields    | https://reqres.in/img/faces/10-image.jpg |
-
-
