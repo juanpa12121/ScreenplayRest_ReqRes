@@ -17,6 +17,11 @@ Feature: Get user on Reqres API
     Then The user validates the quantity of keys 2
 
   @Scenario3
+  Scenario: Get user by id and validate json response schema
+    When The user enters the id 5
+    Then The user validates the json schema "GetUserJson"
+
+  @Scenario4
   Scenario Outline: Request an user in the API and validate the fields
     When The user consults by id <id>
     Then The user validates the response fields

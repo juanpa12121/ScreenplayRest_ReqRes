@@ -1,7 +1,6 @@
 package co.com.tcs.certification.reqres.questions;
 
 import co.com.tcs.certification.reqres.models.DataUserGet;
-import cucumber.api.java.eo.Se;
 import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
