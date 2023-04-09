@@ -39,6 +39,7 @@ public class GetUserStepDefinitions {
     public void theUserEntersTheId(int id) {
         theActorInTheSpotlight().attemptsTo(GetUserReqRes.getUserById(id));
     }
+
     @Then("^The user validates the status code (\\d+)$")
     public void theUserValidatesTheStatusCode(int statusCode) {
         theActorInTheSpotlight()
@@ -67,15 +68,24 @@ public class GetUserStepDefinitions {
                 .should(GivenWhenThen.seeThat(ValidateResponseFields.validateResponseFields()));
     }
 
-    //@Scenario5
     @When("^The user consults by id (.*)$")
     public void theUserConsultsById(int id) {
         OnStage.theActorInTheSpotlight().attemptsTo(GetUserReqRes.getUserById(id));
     }
+
+    //@Scenario5
+    @Then("^The user validates the response fields and expected data$")
+    public void theUserValidatesTheResponseFieldsAndExpectedData(List<DataUserGet> dataList) {
+        OnStage.theActorInTheSpotlight()
+                .should(seeThat(ValidateExpectedDataAlternate.expected(dataList.get(0)), Matchers.equalTo(true)));
+    }
+
+    //@Scenario6
+
     @Then("^The user validates the response fields$")
     public void theUserValidatesTheResponseFields(List<DataUserGet> dataList) {
         OnStage.theActorInTheSpotlight()
-                .should(seeThat(ValidateGetFields.validateResponseFields(dataList.get(0)), Matchers.equalTo(true)));
+                .should(seeThat(ValidateExpectedData.validateExpectedData(dataList.get(0)), Matchers.equalTo(true)));
     }
 
 }
