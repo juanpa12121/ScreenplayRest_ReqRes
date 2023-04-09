@@ -7,11 +7,16 @@ Feature: Get user on Reqres API
     Given The user is in API
 
   @Scenario1
-  Scenario: Request an user correctly
-    When The user enter the id 5
+  Scenario: Get user by id and validate the status code
+    When The user enters the id 5
     Then The user validates the status code 200
 
   @Scenario2
+  Scenario: Get user by id and validate quantity of principal keys
+    When The user enters the id 5
+    Then The user validates the quantity of keys 2
+
+  @Scenario3
   Scenario Outline: Request an user in the API and validate the fields
     When The user consults by id <id>
     Then The user validates the response fields

@@ -2,6 +2,7 @@ package co.com.tcs.certification.reqres.stepdefinitions;
 
 import co.com.tcs.certification.reqres.models.DataUserGet;
 import co.com.tcs.certification.reqres.questions.ValidateGetFields;
+import co.com.tcs.certification.reqres.questions.ValidateQuantityKeys;
 import co.com.tcs.certification.reqres.questions.ValidateStatus;
 import co.com.tcs.certification.reqres.tasks.GetUserReqRes;
 import co.com.tcs.certification.reqres.utils.Constants;
@@ -36,8 +37,8 @@ public class GetUserStepDefinitions {
     }
 
     //@Scenario1
-    @When("^The user enter the id (\\d+)$")
-    public void theUserEnterTheId(int id) {
+    @When("^The user enters the id (\\d+)$")
+    public void theUserEntersTheId(int id) {
         theActorInTheSpotlight().attemptsTo(GetUserReqRes.getUserById(id));
     }
     @Then("^The user validates the status code (\\d+)$")
@@ -48,6 +49,13 @@ public class GetUserStepDefinitions {
     }
 
     //@Scenario2
+    @Then("^The user validates the quantity of keys (\\d+)$")
+    public void theUserValidatesTheQuantityOfKeys(int quantityKeys) {
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(ValidateQuantityKeys.getKeys(quantityKeys),
+                Matchers.equalTo(quantityKeys)));
+    }
+
+    //@Scenario3
     @When("^The user consults by id (.*)$")
     public void theUserConsultsById(int id) {
         OnStage.theActorInTheSpotlight().attemptsTo(GetUserReqRes.getUserById(id));
