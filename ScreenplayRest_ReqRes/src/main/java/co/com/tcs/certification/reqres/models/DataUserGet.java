@@ -8,12 +8,18 @@ public class DataUserGet {
     private String email;
     private String avatar;
 
-    public DataUserGet(int id, String first_name, String last_name, String email, String avatar) {
+    private String url;
+
+    private String text;
+
+    public DataUserGet(int id, String first_name, String last_name, String email, String avatar, String url, String text) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
         this.avatar = avatar;
+        this.url = url;
+        this.text = text;
     }
 
     public int getId() {
@@ -56,6 +62,22 @@ public class DataUserGet {
         this.avatar = avatar;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
     @Override
     public String toString() {
         return "DataUserGet{" +
@@ -64,6 +86,8 @@ public class DataUserGet {
                 ", last_name='" + last_name + '\'' +
                 ", email='" + email + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", url='" + url + '\'' +
+                ", text='" + text + '\'' +
                 '}';
     }
 }

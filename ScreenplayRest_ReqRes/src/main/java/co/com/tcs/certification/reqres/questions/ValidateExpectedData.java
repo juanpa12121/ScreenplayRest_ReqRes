@@ -5,11 +5,11 @@ import net.serenitybdd.rest.SerenityRest;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 
-public class ValidateGetFields implements Question<Boolean> {
+public class ValidateExpectedData implements Question<Boolean> {
 
     private DataUserGet dataUser;
 
-    public ValidateGetFields(DataUserGet dataUser) {
+    public ValidateExpectedData(DataUserGet dataUser) {
         this.dataUser = dataUser;
     }
 
@@ -23,7 +23,7 @@ public class ValidateGetFields implements Question<Boolean> {
                 (dataUserObjectFromApi.getAvatar()).equals(dataUser.getAvatar());
     }
 
-    public static ValidateGetFields validateResponseFields(DataUserGet dataUser){
-        return new ValidateGetFields(dataUser);
+    public static ValidateExpectedData validateExpectedData(DataUserGet dataUser){
+        return new ValidateExpectedData(dataUser);
     }
 }
