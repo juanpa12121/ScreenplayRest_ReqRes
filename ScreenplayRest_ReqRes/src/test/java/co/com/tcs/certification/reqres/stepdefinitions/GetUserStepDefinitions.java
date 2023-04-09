@@ -1,10 +1,7 @@
 package co.com.tcs.certification.reqres.stepdefinitions;
 
 import co.com.tcs.certification.reqres.models.DataUserGet;
-import co.com.tcs.certification.reqres.questions.ValidateGetFields;
-import co.com.tcs.certification.reqres.questions.ValidateJsonSchema;
-import co.com.tcs.certification.reqres.questions.ValidateQuantityKeys;
-import co.com.tcs.certification.reqres.questions.ValidateStatus;
+import co.com.tcs.certification.reqres.questions.*;
 import co.com.tcs.certification.reqres.tasks.GetUserReqRes;
 import co.com.tcs.certification.reqres.utils.Constants;
 import cucumber.api.java.Before;
@@ -64,6 +61,13 @@ public class GetUserStepDefinitions {
     }
 
     //@Scenario4
+    @Then("^The user validates the response fields api$")
+    public void theUserValidatesTheResponseFieldsApi() {
+        OnStage.theActorInTheSpotlight()
+                .should(GivenWhenThen.seeThat(ValidateResponseFields.validateResponseFields()));
+    }
+
+    //@Scenario5
     @When("^The user consults by id (.*)$")
     public void theUserConsultsById(int id) {
         OnStage.theActorInTheSpotlight().attemptsTo(GetUserReqRes.getUserById(id));
