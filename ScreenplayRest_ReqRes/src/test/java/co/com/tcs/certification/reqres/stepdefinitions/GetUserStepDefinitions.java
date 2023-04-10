@@ -1,5 +1,7 @@
 package co.com.tcs.certification.reqres.stepdefinitions;
 
+import co.com.tcs.certification.reqres.exceptions.AssertionsServices;
+
 import co.com.tcs.certification.reqres.models.DataUserGet;
 import co.com.tcs.certification.reqres.questions.*;
 import co.com.tcs.certification.reqres.tasks.GetUserReqRes;
@@ -9,6 +11,9 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import net.serenitybdd.screenplay.GivenWhenThen;
+
+import static co.com.tcs.certification.reqres.exceptions.AssertionsServices.*;
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
@@ -43,49 +48,62 @@ public class GetUserStepDefinitions {
     @Then("^The user validates the status code (\\d+)$")
     public void theUserValidatesTheStatusCode(int statusCode) {
         theActorInTheSpotlight()
-                .should(GivenWhenThen.seeThat(ValidateStatus.code(),
-                        Matchers.equalTo(statusCode)));
+                .should(seeThat(ValidateStatus.code(),
+                                Matchers.equalTo(statusCode))
+                        .orComplainWith(AssertionsServices.class, THE_STATUS_CODE_SERVICE_IS_NOT_EXPECTED)
+                );
     }
 
     //@Scenario2
     @Then("^The user validates the quantity of keys (\\d+)$")
     public void theUserValidatesTheQuantityOfKeys(int quantityKeys) {
-        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(ValidateQuantityKeys.getKeys(quantityKeys),
-                Matchers.equalTo(quantityKeys)));
+        theActorInTheSpotlight()
+                .should(seeThat(ValidateQuantityKeys.getKeys(quantityKeys),
+                                Matchers.equalTo(quantityKeys))
+                                .orComplainWith(AssertionsServices.class, QUANTITY_FIELDS_SERVICE_IS_NOT_EXPECTED)
+        );
     }
 
     //@Scenario3
     @Then("^The user validates the json schema \"([^\"]*)\"$")
     public void theUserValidatesTheJsonSchema(String schemaResponse) {
-        OnStage.theActorInTheSpotlight()
-                .should(GivenWhenThen.seeThat(ValidateJsonSchema.expected(schemaResponse)));
+        theActorInTheSpotlight()
+                .should(seeThat(ValidateJsonSchema.expected(schemaResponse))
+                                .orComplainWith(AssertionsServices.class, SCHEMA_SERVICE_IS_NOT_EXPECTED)
+                );
     }
 
     //@Scenario4
     @Then("^The user validates the response fields api$")
     public void theUserValidatesTheResponseFieldsApi() {
-        OnStage.theActorInTheSpotlight()
-                .should(GivenWhenThen.seeThat(ValidateResponseFields.validateResponseFields()));
+        theActorInTheSpotlight()
+                .should(seeThat(ValidateResponseFields.validateResponseFields())
+                                .orComplainWith(AssertionsServices.class, RESPONSE_FIELDS_ARE_NOT_EXPECTED)
+                );
     }
 
     @When("^The user consults by id (.*)$")
     public void theUserConsultsById(int id) {
-        OnStage.theActorInTheSpotlight().attemptsTo(GetUserReqRes.getUserById(id));
+        theActorInTheSpotlight().attemptsTo(GetUserReqRes.getUserById(id));
     }
 
     //@Scenario5
     @Then("^The user validates the response fields and expected data$")
     public void theUserValidatesTheResponseFieldsAndExpectedData(List<DataUserGet> dataList) {
-        OnStage.theActorInTheSpotlight()
-                .should(seeThat(ValidateExpectedDataAlternate.expected(dataList.get(0)), Matchers.equalTo(true)));
+        theActorInTheSpotlight()
+                .should(seeThat(ValidateExpectedDataAlternate.expected(dataList.get(0)),
+                                Matchers.equalTo(true))
+                                .orComplainWith(AssertionsServices.class, RESPOSE_DATA_ARE_NOT_EXPECTED)
+                );
     }
 
     //@Scenario6
-
     @Then("^The user validates the response fields$")
     public void theUserValidatesTheResponseFields(List<DataUserGet> dataList) {
         OnStage.theActorInTheSpotlight()
-                .should(seeThat(ValidateExpectedData.validateExpectedData(dataList.get(0)), Matchers.equalTo(true)));
+                .should(seeThat(ValidateExpectedData.validateExpectedData(dataList.get(0)),
+                                Matchers.equalTo(true))
+                                .orComplainWith(AssertionsServices.class, RESPOSE_DATA_ARE_NOT_EXPECTED)
+                );
     }
-
 }
