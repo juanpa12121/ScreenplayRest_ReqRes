@@ -9,7 +9,7 @@ Feature: Get user on Reqres API
   @Scenario1
   Scenario: Get user by id and validate the status code
     When The user enters the id 5
-    Then The user validates the status code 200
+    Then The user validates the status code 201
 
   @Scenario2
   Scenario: Get user by id and validate quantity of principal keys
@@ -34,7 +34,7 @@ Feature: Get user on Reqres API
       | <id> | <email> | <first_name> | <last_name> | <avatar> | <url> | <text> |
     Examples:
       | id | email                  | first_name | last_name | avatar                                   | url                                | text                                                                     |
-      | 10 | byron.fields@reqres.in | Byron      | Fields    | https://reqres.in/img/faces/10-image.jpg | https://reqres.in/#support-heading | To keep ReqRes free, contributions towards server costs are appreciated! |
+      | 10 | byron.fields@reqres.in | Byrona      | Fields    | https://reqres.in/img/faces/10-image.jpg | https://reqres.in/#support-heading | To keep ReqRes free, contributions towards server costs are appreciated! |
 
 
   @Scenario6

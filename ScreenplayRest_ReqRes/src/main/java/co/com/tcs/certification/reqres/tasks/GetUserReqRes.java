@@ -26,6 +26,7 @@ public class GetUserReqRes implements Task {
                                 requestSpecification.param(PARAM_ID, id)
                                         .log().all().relaxedHTTPSValidation())
         );
+        System.out.println("\nResponse result");
         SerenityRest.lastResponse().prettyPrint();
     }
 
