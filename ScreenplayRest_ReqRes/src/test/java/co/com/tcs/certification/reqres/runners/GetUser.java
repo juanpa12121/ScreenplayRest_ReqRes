@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/get_user.feature",
         glue = "co.com.tcs.certification.reqres.stepdefinitions",
         snippets = SnippetType.CAMELCASE,
-        tags = "@Scenario5"
+        tags = "@Scenario3"
 )
 public class GetUser {
 }
