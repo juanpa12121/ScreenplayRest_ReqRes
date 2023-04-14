@@ -12,6 +12,8 @@ Feature: Delete an user in Reqres API
     Examples:
       | id |
       | 5  |
+      | 2  |
+      | 20 |
 
 
 

@@ -18,8 +18,8 @@ public class DeleteUserStepDefinitions {
         OnStage.setTheStage(new OnlineCast());
         OnStage.theActorCalled(ACTOR_NAME);
     }
-    @When("^The user deletes an user with id (.*)$")
-    public void theUserDeletesAnUserWithId(List<DataUserGet> list) {
-        theActorInTheSpotlight().attemptsTo(DeleteUserReqRes.deleteUser(list.get(0)));
+    @When("^The user deletes an user with id (\\d+)$")
+    public void theUserDeletesAnUserWithId(int id, List<DataUserGet> list) {
+        theActorInTheSpotlight().attemptsTo(DeleteUserReqRes.deleteUser(id));
     }
 }
