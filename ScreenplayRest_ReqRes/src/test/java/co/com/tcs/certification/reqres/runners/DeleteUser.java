@@ -8,10 +8,9 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features = "src/test/resources/features/get_user.feature",
+        features = "src/test/resources/features/delete_user.feature",
         glue = "co.com.tcs.certification.reqres.stepdefinitions",
-        snippets = SnippetType.CAMELCASE,
-        tags = "@Scenario5"
+        snippets = SnippetType.CAMELCASE
 )
-public class GetUser {
+public class DeleteUser {
 }
